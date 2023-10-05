@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Java集合篇</title>
+    <link href="/posts/55d6653c.html"/>
+    <url>/posts/55d6653c.html</url>
+    
+    <content type="html"><![CDATA[<p class="note note-info">Last updated on October 05, 2023</p><h2 id="集合概述"><a href="#集合概述" class="headerlink" title="集合概述"></a>集合概述</h2><h3 id="Java-集合概览"><a href="#Java-集合概览" class="headerlink" title="Java 集合概览"></a>Java 集合概览</h3><p>Java 集合， 也叫作容器，主要是由两大接口派生而来：一个是 <code>Collection</code>接口，主要用于存放单一元素；另一个是 <code>Map</code> 接口，主要用于存放键值对。对于<code>Collection</code> 接口，下面又有三个主要的子接口：<code>List</code>、<code>Set</code> 和 <code>Queue</code>。</p><p>Java 集合框架如下图所示：</p><p><img src="https://blog-1320152118.cos.ap-chengdu.myqcloud.com/Java-Collection/202310051433999.png" alt="image-20231005143307928"></p><h3 id="知道-List-Set-Queue-Map-四者的区别吗？"><a href="#知道-List-Set-Queue-Map-四者的区别吗？" class="headerlink" title="知道 List, Set, Queue, Map 四者的区别吗？"></a>知道 List, Set, Queue, Map 四者的区别吗？</h3><p><code>List</code>：存储的元素是有序的、可重复的。</p><p><code>Set</code>：存储的元素不可重复的。</p><p><code>Queue</code>：按特定的排队规则来确定先后顺序，存储的元素是有序的、可重复的。</p><p><code>Map</code>：使用键值对（key-value）存储；key 是无序的、不可重复的；value 是无序的、可重复的，每个键最多映射到一个值。</p><h3 id="集合框架底层数据结构总结"><a href="#集合框架底层数据结构总结" class="headerlink" title="集合框架底层数据结构总结"></a>集合框架底层数据结构总结</h3><h4 id="List"><a href="#List" class="headerlink" title="List"></a>List</h4><p><code>ArrayList</code>：<code>Object[]</code> 数组</p><p><code>Vector</code>：<code>Object[]</code> 数组</p><p><code>LinkedList</code>：双向链表(JDK 1.6 之前为循环链表，JDK 1.7 取消了循环)</p><h4 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h4><p><code>HashSet</code>(无序，唯一): 基于 <code>HashMap</code> 实现的，底层采用 <code>HashMap</code> 来保存元素</p><p><code>LinkedHashSet</code>: <code>LinkedHashSet</code> 是 <code>HashSet</code> 的子类，并且其内部是通过 <code>LinkedHashMap</code> 来实现的。有点类似于我们之前说的 <code>LinkedHashMap</code> 其内部是基于 <code>HashMap</code> 实现一样，不过还是有一点点区别的</p><p><code>TreeSet</code>(有序，唯一): 红黑树(自平衡的排序二叉树)</p><h4 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h4><p><code>PriorityQueue</code>: <code>Object[]</code> 数组来实现二叉堆</p><p><code>ArrayQueue</code>: <code>Object[]</code> 数组 + 双指针</p><h4 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h4>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java集合</tag>
+      
+      <tag>面试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Java基础篇</title>
     <link href="/posts/4c564f26.html"/>
     <url>/posts/4c564f26.html</url>
@@ -20,9 +47,9 @@
     
     <tags>
       
-      <tag>Java基础</tag>
-      
       <tag>面试</tag>
+      
+      <tag>Java基础</tag>
       
     </tags>
     
