@@ -8,7 +8,7 @@
     <link href="/posts/3e225941.html"/>
     <url>/posts/3e225941.html</url>
     
-    <content type="html"><![CDATA[<p class="note note-info">Last updated on October 13, 2023</p><h2 id="多线程基础"><a href="#多线程基础" class="headerlink" title="多线程基础"></a>多线程基础</h2><h3 id="什么是进程和线程"><a href="#什么是进程和线程" class="headerlink" title="什么是进程和线程?"></a>什么是进程和线程?</h3><p><strong>进程</strong>是程序的一次执行过程，是系统运行程序的基本单位。</p><p><strong>线程</strong>是进程的一个执行路径，一个进程中至少包含一个线程，进程中的多个线程共享进程的堆和方法区资源，但每个线程有自己的<strong>程序计数器</strong>、<strong>虚拟机栈</strong>和<strong>本地方法栈</strong>，所以系统在产生一个线程，或是在各个线程之间作切换工作时，负担要比进程小得多，也正因为如此，线程也被称为轻量级进程。</p><blockquote><p><strong>引入线程前，进程是资源分配和独立调度的基本单位。引入线程后，进程是资源分配的基本单位，线程是独立调度的基本单位。</strong></p></blockquote><blockquote><p><strong>程序计数器为什么是私有的?</strong></p><p>在多线程的情况下，程序计数器用于记录当前线程执行的位置，从而当线程被切换回来的时候能够知道该线程上次运行到哪儿了。所以，程序计数器私有主要是为了<strong>线程切换后能恢复到正确的执行位置</strong>。</p></blockquote><blockquote><p><strong>虚拟机栈和本地方法栈为什么是私有的?</strong></p><p>虚拟机栈和本地方法栈私有是为了<strong>保证线程中的局部变量不被别的线程访问到</strong>。</p></blockquote><h3 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别?"></a>进程和线程的区别?</h3><ul><li>进程是资源（包括内存、打开的文件等）分配的基本单位，线程是 CPU 调度的基本单位；</li><li>进程拥有一个完整的资源平台，而线程只独享必不可少的资源；</li><li>线程能减少并发执行的时间和空间开销，但不利于资源的管理和保护，而进程正相反。</li></ul><h3 id="什么是并发与并行"><a href="#什么是并发与并行" class="headerlink" title="什么是并发与并行?"></a>什么是并发与并行?</h3><p><strong>并发：</strong>宏观上在<strong>一段时间</strong>内能同时运行多个程序。当然，这些程序宏观上是同时发生的，但微观上是交替发生的。操作系统通过引入进程和线程，使得程序能够并发运行。</p><p><strong>并行：</strong>并行指<strong>同一时刻</strong>能运行多个指令，指两个或多个事件在同一时刻同时发生。</p><h3 id="什么是同步和异步"><a href="#什么是同步和异步" class="headerlink" title="什么是同步和异步?"></a>什么是同步和异步?</h3><p><strong>同步：</strong>发出一个调用之后，在没有得到结果之前， 该调用就不可以返回，一直等待。</p><p><strong>异步：</strong>调用在发出之后，不用等待返回结果，该调用直接返回。</p>]]></content>
+    <content type="html"><![CDATA[<p class="note note-info">Last updated on October 13, 2023</p><h2 id="多线程基础"><a href="#多线程基础" class="headerlink" title="多线程基础"></a>多线程基础</h2><h3 id="什么是进程和线程"><a href="#什么是进程和线程" class="headerlink" title="什么是进程和线程?"></a>什么是进程和线程?</h3><p><strong>进程</strong>是程序的一次执行过程，是系统运行程序的基本单位。</p><p><strong>线程</strong>是进程的一个执行路径，一个进程中至少包含一个线程，进程中的多个线程共享进程的堆和方法区资源，但每个线程有自己的<strong>程序计数器</strong>、<strong>虚拟机栈</strong>和<strong>本地方法栈</strong>，所以系统在产生一个线程，或是在各个线程之间作切换工作时，负担要比进程小得多，也正因为如此，线程也被称为轻量级进程。</p><blockquote><p><strong>引入线程前，进程是资源分配和独立调度的基本单位。引入线程后，进程是资源分配的基本单位，线程是独立调度的基本单位。</strong></p></blockquote><blockquote><p><strong>程序计数器为什么是私有的?</strong></p><p>在多线程的情况下，程序计数器用于记录当前线程执行的位置，从而当线程被切换回来的时候能够知道该线程上次运行到哪儿了。所以，程序计数器私有主要是为了<strong>线程切换后能恢复到正确的执行位置</strong>。</p></blockquote><blockquote><p><strong>虚拟机栈和本地方法栈为什么是私有的?</strong></p><p>虚拟机栈和本地方法栈私有是为了<strong>保证线程中的局部变量不被别的线程访问到</strong>。</p></blockquote><h3 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别?"></a>进程和线程的区别?</h3><ul><li>进程是资源（包括内存、打开的文件等）分配的基本单位，线程是 CPU 调度的基本单位；</li><li>进程拥有一个完整的资源平台，而线程只独享必不可少的资源；</li><li>线程能减少并发执行的时间和空间开销，但不利于资源的管理和保护，而进程正相反。</li></ul><h3 id="什么是并发与并行"><a href="#什么是并发与并行" class="headerlink" title="什么是并发与并行?"></a>什么是并发与并行?</h3><p><strong>并发：</strong>宏观上在<strong>一段时间</strong>内能同时运行多个程序。当然，这些程序宏观上是同时发生的，但微观上是交替发生的。操作系统通过引入进程和线程，使得程序能够并发运行。</p><p><strong>并行：</strong>并行指<strong>同一时刻</strong>能运行多个指令，指两个或多个事件在同一时刻同时发生。</p><h3 id="什么是同步和异步"><a href="#什么是同步和异步" class="headerlink" title="什么是同步和异步?"></a>什么是同步和异步?</h3><p><strong>同步：</strong>发出一个调用之后，在没有得到结果之前， 该调用就不可以返回，一直等待。</p><p><strong>异步：</strong>调用在发出之后，不用等待返回结果，该调用直接返回。</p><h3 id="说说线程的生命周期和状态"><a href="#说说线程的生命周期和状态" class="headerlink" title="说说线程的生命周期和状态?"></a>说说线程的生命周期和状态?</h3><table><thead><tr><th align="center">状态</th><th align="center">说明</th></tr></thead><tbody><tr><td align="center">NEW</td><td align="center">初始状态：线程被创建，但还没有调用start()方法</td></tr><tr><td align="center">RUNNABLE</td><td align="center">当调用了 start 方法后，线程就进入了运行状态（RUNNABLE ），Java 线程将操作系统中线程的就绪（READY）和运行（RUNNING）两种状态统称为 “RUNNABLE”。</td></tr><tr><td align="center">BLOCKED</td><td align="center">阻塞状态：表示线程阻塞于锁</td></tr><tr><td align="center">WAITING</td><td align="center">等待状态：表示线程进入等待状态，进入该状态表示当前线程需要等待其他线程做出一些特定动作（通知或中断）</td></tr><tr><td align="center">TIME_WAITING</td><td align="center">超时等待状态，可以在指定的时间后自行返回而不是像 WAITING 那样一直等待。</td></tr><tr><td align="center">TERMINATED</td><td align="center">终止状态，表示该线程已经运行完毕。</td></tr></tbody></table><p>线程在自身的生命周期中， 并不是固定地处于某个状态，而是随着代码的执行在不同的状态之间进行切换，Java线程状态变化如图示：</p><p><img src="https://blog-1320152118.cos.ap-chengdu.myqcloud.com/Java-Concurrent-Program/202310132019366.jpg"></p><h3 id="什么是线程上下文切换？"><a href="#什么是线程上下文切换？" class="headerlink" title="什么是线程上下文切换？"></a>什么是线程上下文切换？</h3><p>线程在执行过程中会有自己的运行条件和状态（也称上下文），比如上文所说到过的程序计数器，栈信息等。当出现如下情况的时候，线程会从占用 CPU 状态中退出。</p><blockquote><p>主动让出 CPU，比如调用了 <code>sleep()</code>, <code>wait()</code> 等。</p><p>时间片用完，因为操作系统要防止一个线程或者进程长时间占用 CPU 导致其他线程或者进程饿死。</p><p>调用了阻塞类型的系统中断，比如请求 IO，线程被阻塞。</p><p>被终止或结束运行</p></blockquote><p>这其中前三种都会发生线程切换，线程切换意味着需要保存当前线程的上下文，留待线程下次占用 CPU 的时候恢复现场。并加载下一个将要占用 CPU 的线程上下文。这就是所谓的 <strong>上下文切换</strong>。</p><h3 id="了解守护线程吗"><a href="#了解守护线程吗" class="headerlink" title="了解守护线程吗?"></a>了解守护线程吗?</h3><p><strong>Java 中的线程分为两类，分别为 daemon 线程(守护线程)和 user 线程(用户线程)。</strong>在 JVM 启动时会调用 main 函数，main函数所在的线程就是一个用户线程。其实在 JVM 内部同时还启动了很多守护线程，比如 GC 线程(垃圾回收线程)。</p><p>那么守护线程和用户线程有什么区别呢？区别之一是当最后一个非守护线程束时， JVM会正常退出，而不管当前是否存在守护线程，也就是说守护线程是否结束并不影响 JVM退出。换而言之，只要有一个用户线程还没结束，正常情况下 JVM 就不会退出。</p><blockquote><p><strong>Java 默认有几个线程?</strong></p><p>两个，<strong>main</strong>线程和<strong>GC</strong>线程。</p></blockquote><h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><h4 id="什么是死锁"><a href="#什么是死锁" class="headerlink" title="什么是死锁?"></a>什么是死锁?</h4><p>死锁是指两个或两个以上的线程在执行过程中，因争夺资源而造成的互相等待的现象，在无外力作用的情况下，这些线程会一直相互等待而无法继续运行下去。</p><blockquote><p><strong>产生死锁的四个必要条件：</strong></p><p>1.互斥条件：该资源任意一个时刻只由一个线程占用。</p><p>2.请求与保持条件：一个线程因请求资源而阻塞时，对已获得的资源保持不放。</p><p>3.不剥夺条件:线程已获得的资源在未使用完之前不能被其他线程强行剥夺，只有自己使用完毕后才释放资源。</p><p>4.环路等待条件:若干线程之间形成一种头尾相接的循环等待资源关系。</p></blockquote><h4 id="如何避免死锁"><a href="#如何避免死锁" class="headerlink" title="如何避免死锁?"></a>如何避免死锁?</h4><p><strong>至少破坏死锁发生的一个条件：</strong></p><blockquote><p><strong>互斥条件没有办法破坏，因为用锁为的就是互斥。</strong></p><p><strong>破坏请求与保持条件：</strong>一次性申请所有的资源。</p><p><strong>破坏不剥夺条件：</strong>占用部分资源的线程进一步申请其他资源时，如果申请不到，可以主动释放它占有的资源。</p><p><strong>破坏循环等待条件：</strong>靠按序申请资源来预防。按某一顺序申请资源，释放资源则反序释放。破坏循环等待条件。</p></blockquote>]]></content>
     
     
     <categories>
@@ -20,11 +20,11 @@
     
     <tags>
       
+      <tag>面试</tag>
+      
       <tag>Java并发编程</tag>
       
       <tag>多线程</tag>
-      
-      <tag>面试</tag>
       
     </tags>
     
@@ -76,9 +76,9 @@
     
     <tags>
       
-      <tag>面试</tag>
-      
       <tag>Java基础</tag>
+      
+      <tag>面试</tag>
       
     </tags>
     
