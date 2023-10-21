@@ -8,7 +8,7 @@
     <link href="/posts/59ae8782.html"/>
     <url>/posts/59ae8782.html</url>
     
-    <content type="html"><![CDATA[<p class="note note-info">Last updated on October 19, 2023</p><h2 id="IO-流概述"><a href="#IO-流概述" class="headerlink" title="IO 流概述"></a>IO 流概述</h2><p>IO 即 <code>Input/Output</code>，输入和输出。数据输入到计算机内存的过程即输入，反之输出到外部存储（比如数据库，文件，远程主机）的过程即输出。IO 流在 Java 中分为输入流和输出流，而根据数据的处理方式又分为字节流和字符流。</p><p><code>InputStream</code>&#x2F;<code>Reader</code>: 所有的输入流的基类，前者是字节输入流，后者是字符输入流。</p><p><code>OutputStream</code>&#x2F;<code>Writer</code>: 所有输出流的基类，前者是字节输出流，后者是字符输出流。</p><p>IO 流体系结构图：</p><p><img src="https://holary.cn/Java-IO-Stream/202310211439867.png?images"></p>]]></content>
+    <content type="html"><![CDATA[<p class="note note-info">Last updated on October 19, 2023</p><h2 id="IO-流概述"><a href="#IO-流概述" class="headerlink" title="IO 流概述"></a>IO 流概述</h2><p>IO 即 <code>Input/Output</code>，输入和输出。数据输入到计算机内存的过程即输入，反之输出到外部存储（比如数据库，文件，远程主机）的过程即输出。IO 流在 Java 中分为输入流和输出流，而根据数据的处理方式又分为字节流和字符流。</p><p><code>InputStream</code>&#x2F;<code>Reader</code>: 所有的输入流的基类，前者是字节输入流，后者是字符输入流。</p><p><code>OutputStream</code>&#x2F;<code>Writer</code>: 所有输出流的基类，前者是字节输出流，后者是字符输出流。</p><p>IO 流体系结构图：</p><p><img src="https://blog-1320152118.cos.ap-chengdu.myqcloud.com/Java-IO-Stream/202310211439867.png"></p>]]></content>
     
     
     <categories>
