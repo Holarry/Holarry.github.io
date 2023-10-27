@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>MyBatis</title>
+    <link href="/posts/1bff3c65.html"/>
+    <url>/posts/1bff3c65.html</url>
+    
+    <content type="html"><![CDATA[<p class="note note-info">Last updated on October 27, 2023</p><h3 id="什么是-MyBatis"><a href="#什么是-MyBatis" class="headerlink" title="什么是 MyBatis?"></a>什么是 MyBatis?</h3><p>MyBatis 是一个半 ORM(对象关系映射) 框架，它内部封装了 JDBC，开发时只需要关注 SQL 语句本身，不需要花费精力去处理加载驱动、创建连接、创建statement 等繁杂的过程。程序员直接编写原生态 SQL，可以严格控制 SQL执行性能，灵活度高。MyBatis 可以使用 XML 或注解来配置和映射原生信息，将 POJO 映射成数据库中的记录，避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。</p><h3 id="和-的区别是什么"><a href="#和-的区别是什么" class="headerlink" title="#{} 和 ${} 的区别是什么?"></a>#{} 和 ${} 的区别是什么?</h3><ul><li><code>#&#123;&#125;</code>是占位符，预编译处理；<code>$&#123;&#125;</code>是拼接符，没有预编译处理。(MyBatis在处理<code>#&#123;&#125;</code>时，<code>#&#123;&#125;</code>传入参数是以字符串传入，会将 SQL 中的<code>#&#123;&#125;</code>替换为 ? 号，调用 <code>PreparedStatement</code> 的 <code>set</code> 方法来赋值。)</li><li><code>#&#123;&#125;</code> 可以有效的防止 SQ L注入，提高系统安全性；<code>$&#123;&#125;</code> 不能防止 SQL 注入。</li><li><code>#&#123;&#125;</code> 的变量替换是在 DBMS 中；<code>$&#123;&#125;</code> 的变量替换是在 DBMS 外。</li></ul><h3 id="怎么在-mapper-中传递多个参数"><a href="#怎么在-mapper-中传递多个参数" class="headerlink" title="怎么在 mapper 中传递多个参数?"></a>怎么在 mapper 中传递多个参数?</h3><p><strong>1.顺序传参法:</strong> <code>#&#123;&#125;</code>里面的数字代表传入参数的顺序，这种方法<strong>不建议使用</strong>，SQL 层表达不直观，一旦顺序调整容易出错。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> User <span class="hljs-title function_">selectUser</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> deptId)</span>;<br><br>&lt;select id=<span class="hljs-string">&quot;selectUser&quot;</span> resultMap=<span class="hljs-string">&quot;UserResultMap&quot;</span>&gt;<br>    select * from user<br>    <span class="hljs-type">where</span> <span class="hljs-variable">user_name</span> <span class="hljs-operator">=</span> #&#123;<span class="hljs-number">0</span>&#125; <span class="hljs-type">and</span> <span class="hljs-variable">dept_id</span> <span class="hljs-operator">=</span> #&#123;<span class="hljs-number">1</span>&#125;<br>&lt;/select&gt;<br></code></pre></td></tr></table></figure><p><strong>2.<code>@Param</code>注解传参法:</strong> <code>#&#123;&#125;</code>里面的名称对应的是注解 <code>@Param</code> 括号里面修饰的名称，这种方法在参数不多的情况<strong>建议使用</strong>。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> User <span class="hljs-title function_">selectUser</span><span class="hljs-params">(<span class="hljs-meta">@Param(&quot;userName&quot;)</span> String name, <span class="hljs-type">int</span> <span class="hljs-meta">@Param(&quot;deptId&quot;)</span> deptId)</span>;<br><br>&lt;select id=<span class="hljs-string">&quot;selectUser&quot;</span> resultMap=<span class="hljs-string">&quot;UserResultMap&quot;</span>&gt;<br>    select * from user<br>    <span class="hljs-type">where</span> <span class="hljs-variable">user_name</span> <span class="hljs-operator">=</span> #&#123;userName&#125; <span class="hljs-type">and</span> <span class="hljs-variable">dept_id</span> <span class="hljs-operator">=</span> #&#123;deptId&#125;<br>&lt;/select&gt;<br></code></pre></td></tr></table></figure><p><strong>3.Map传参法:</strong> <code>#&#123;&#125;</code>里面的名称对应的是 Map 里面的 key 名称，这种方法适合传递多个参数，且参数易变能灵活传递的情况。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> User <span class="hljs-title function_">selectUser</span><span class="hljs-params">(Map&lt;String, Object&gt; params)</span>;<br><br>&lt;select id=<span class="hljs-string">&quot;selectUser&quot;</span> parameterType=<span class="hljs-string">&quot;java.util.Map&quot;</span> resultMap=<span class="hljs-string">&quot;UserResultMap&quot;</span>&gt;<br>    select * from user<br>    <span class="hljs-type">where</span> <span class="hljs-variable">user_name</span> <span class="hljs-operator">=</span> #&#123;userName&#125; <span class="hljs-type">and</span> <span class="hljs-variable">dept_id</span> <span class="hljs-operator">=</span> #&#123;deptId&#125;<br>&lt;/select&gt;<br></code></pre></td></tr></table></figure><p><strong>4.Java Bean传参法:</strong> <code>#&#123;&#125;</code>里面的名称对应的是 Java Bean 类里面的成员属性，这种方法直观，需要建一个实体类，扩展不容易，需要加属性，但代码可读性强，业务逻辑处理方便，<strong>推荐使用</strong>。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> User <span class="hljs-title function_">selectUser</span><span class="hljs-params">(User user)</span>;<br><br>&lt;select id=<span class="hljs-string">&quot;selectUser&quot;</span> parameterType=<span class="hljs-string">&quot;com.holary.pojo.User&quot;</span> resultMap=<span class="hljs-string">&quot;UserResultMap&quot;</span>&gt;<br>    select * from user<br>    <span class="hljs-type">where</span> <span class="hljs-variable">user_name</span> <span class="hljs-operator">=</span> #&#123;userName&#125; <span class="hljs-type">and</span> <span class="hljs-variable">dept_id</span> <span class="hljs-operator">=</span> #&#123;deptId&#125;<br>&lt;/select&gt;<br></code></pre></td></tr></table></figure><h3 id="实体类属性名和表中字段名不一样，怎么解决"><a href="#实体类属性名和表中字段名不一样，怎么解决" class="headerlink" title="实体类属性名和表中字段名不一样，怎么解决?"></a>实体类属性名和表中字段名不一样，怎么解决?</h3><p>1.通过在查询的 SQL 语句中定义字段名的别名，让字段名的别名和实体类的属性名一致。</p><p>2.通过 ResultMap 来映射字段名和实体类属性名。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>框架</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>面试</tag>
+      
+      <tag>MyBatis</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Spring</title>
     <link href="/posts/6c92115f.html"/>
     <url>/posts/6c92115f.html</url>
@@ -13,7 +40,7 @@
     
     <categories>
       
-      <category>Java</category>
+      <category>框架</category>
       
     </categories>
     
