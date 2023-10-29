@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>MySQL</title>
+    <link href="/posts/c24675b4.html"/>
+    <url>/posts/c24675b4.html</url>
+    
+    <content type="html"><![CDATA[<p class="note note-info">Last updated on October 29, 2023</p><h2 id="MySQL基础"><a href="#MySQL基础" class="headerlink" title="MySQL基础"></a>MySQL基础</h2><h3 id="MySQL字段类型"><a href="#MySQL字段类型" class="headerlink" title="MySQL字段类型"></a>MySQL字段类型</h3><p><img src="https://blog-1320152118.cos.ap-chengdu.myqcloud.com/java-interview-images202310292108367.png"></p><h3 id="整数类型的-UNSIGNED-属性有什么用"><a href="#整数类型的-UNSIGNED-属性有什么用" class="headerlink" title="整数类型的 UNSIGNED 属性有什么用?"></a>整数类型的 UNSIGNED 属性有什么用?</h3><p>MySQL 中的整数类型可以使用可选的 <code>UNSIGNED</code> 属性来表示不允许负值的无符号整数。使用 <code>UNSIGNED</code> 属性可以将正整数的上限提高一倍，因为它不需要存储负数值。例如， <code>TINYINT UNSIGNED</code> 类型的取值范围是 0 ~ 255，而普通的 <code>TINYINT</code> 类型的值范围是 -128 ~ 127。<code>INT UNSIGNED</code> 类型的取值范围是 0 ~ 4294967295，而普通的 <code>INT</code> 类型的值范围是 2147483648 ~ 2147483647。</p><p>对于从 0 开始递增的 ID 列，使用 <code>UNSIGNED</code> 属性可以非常适合，因为不允许负值并且可以拥有更大的上限范围，提供了更多的 ID 值可用。</p><h3 id="CHAR-和-VARCHAR-有什么区别"><a href="#CHAR-和-VARCHAR-有什么区别" class="headerlink" title="CHAR 和 VARCHAR 有什么区别?"></a>CHAR 和 VARCHAR 有什么区别?</h3><p>1.<strong>CHAR 是定长字符串(如果插入数据的长度小于 char 的固定长度时，则用空格填充)，VARCHAR 是变长字符串。</strong></p><p>2.CHAR 的存取速度比 VARCHAR 要快得多。</p><p>3.CHAR 更适合存储长度较短或者长度都差不多的字符串，例如 Bcrypt 算法、MD5 算法加密后的密码、身份证号码。VARCHAR 类型适合存储长度不确定或者差异较大的字符串，例如用户昵称、文章标题等。</p><h3 id="DECIMAL-和-FLOAT-DOUBLE-的区别是什么"><a href="#DECIMAL-和-FLOAT-DOUBLE-的区别是什么" class="headerlink" title="DECIMAL 和 FLOAT&#x2F;DOUBLE 的区别是什么?"></a>DECIMAL 和 FLOAT&#x2F;DOUBLE 的区别是什么?</h3><p><strong>DECIMAL 是定点数，FLOAT&#x2F;DOUBLE 是浮点数。DECIMAL 可以存储精确的小数值，FLOAT&#x2F;DOUBLE 只能存储近似的小数值。</strong></p><p>DECIMAL 用于存储具有精度要求的小数，例如与货币相关的数据，可以避免浮点数带来的精度损失。</p><h3 id="DATETIME-和-TIMESTAMP-有什么区别"><a href="#DATETIME-和-TIMESTAMP-有什么区别" class="headerlink" title="DATETIME 和 TIMESTAMP 有什么区别?"></a>DATETIME 和 TIMESTAMP 有什么区别?</h3><p>1.DATETIME 存储时间与时区无关；TIMESTAMP 存储时间与时区有关，显示的值也依赖于时区。</p><p>2.DATETIME 的存储空间为 8 字节；TIMESTAMP 的存储空间为 4 字节。</p><p>3.DATETIME 的日期范围是 <code>1000-01-01 00:00:00.000000</code> 到 <code>9999-12-31 23:59:59.999999</code>；TIMESTAMP 的时间范围是<code>1970-01-01 00:00:01.000000</code> UTC 到 <code>2038-01-09 03:14:07.999999</code> UTC。</p><p>4.DATETIME 的默认值为 NULL；TIMESTAMP 的字段默认不为空(NOT NULL)，默认值为当前时间(CURRENT_TIMESTAMP)。</p><h3 id="NULL-和-‘’-有什么区别"><a href="#NULL-和-‘’-有什么区别" class="headerlink" title="NULL 和 ‘’ 有什么区别?"></a>NULL 和 ‘’ 有什么区别?</h3><p>1.<code>&#39;&#39;</code> 的长度是 0，是不占用空间的；<code>NULL</code> 是需要占用空间的。</p><p>2.<code>NULL</code> 会影响聚合函数的结果。例如，<code>SUM</code>、<code>AVG</code>、<code>MIN</code>、<code>MAX</code> 等聚合函数会忽略 <code>NULL</code> 值。 <code>COUNT</code> 的处理方式取决于参数的类型。如果参数是 <code>*</code>(<code>COUNT(*)</code>)，则会统计所有的记录数，包括 <code>NULL</code> 值；如果参数是某个字段名(<code>COUNT(列名)</code>)，则会忽略 <code>NULL</code> 值，只统计非空值的个数。</p><p>3.查询 <code>NULL</code> 值时，必须使用 <code>IS NULL</code> 或 <code>IS NOT NULLl</code> 来判断，而不能使用 &#x3D;、!&#x3D;、 &lt;、&gt; 之类的比较运算符。而 <code>&#39;&#39;</code> 是可以使用这些比较运算符的。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据库</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>面试</tag>
+      
+      <tag>MySQL</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>MyBatis</title>
     <link href="/posts/1bff3c65.html"/>
     <url>/posts/1bff3c65.html</url>
